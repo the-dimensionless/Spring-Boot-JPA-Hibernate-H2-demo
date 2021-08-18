@@ -78,8 +78,25 @@ spring-boot-devtools : Helps with auto-reloading
 
 
 # Introduction to JPA and Hibernate : 
+With the latest versions of Spring Boot (2.3+),
+the H2 database name is randomly generated each
+time we restart the server.
+
+We can find the database name and URL from the console log.
+
+To Make DB url constant
+> spring.datasource.url=jdbc:h2:mem:testdb
+> spring.data.jpa.repositories.bootstrap-mode=default
 
 
+>@Entity helps identify entity bean
 
+> @Id\
+> @GeneratedValue :\
+> Hibernate auto generates the id
+
+* Provide a no arg constructor (make it protected or arg constructor would override it)
+
+* In the repository class, autowir EntityManager using @Autowired
 
 
