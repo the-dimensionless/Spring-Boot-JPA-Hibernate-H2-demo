@@ -97,6 +97,13 @@ To Make DB url constant
 
 * Provide a no arg constructor (make it protected or arg constructor would override it)
 
-* In the repository class, autowir EntityManager using @Autowired
+* In the repository class, autowired EntityManager using @Autowired
+
+* Implement implements CommandLineRunner to run some code during startup
+* Running scripts from the data.sql or import.sql file from resources
+* logging.level.org.hibernate.type = debug to see sql queries
+* logging.level.org.hibernate.type = trace to see dynamic values that are getting passed in query
+
+
 
 
