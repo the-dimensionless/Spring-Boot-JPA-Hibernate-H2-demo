@@ -105,5 +105,15 @@ To Make DB url constant
 * logging.level.org.hibernate.type = trace to see dynamic values that are getting passed in query
 
 
+*** findById, remove using entity manager in repository is easy
+> Whenever we change the data (update, remove), we require a transaction or else
+> javax.persistence.TransactionRequiredException: No EntityManager with actual transaction available for current thread 
+> is thrown
+
+* Use @Transactional on the repository to make it transactional
+   The methods inside are run as transactions
+  
+* After running  unit test for operation that changes data like remove or deleteById,
+add @DirtiesContext so that after test, original state is brought back
 
 
