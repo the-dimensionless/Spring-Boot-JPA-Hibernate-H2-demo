@@ -3,6 +3,8 @@ package com.springboot.jpa.hibernate.repositories;
 import com.springboot.jpa.hibernate.HibernateApplication;
 import com.springboot.jpa.hibernate.entities.Course;
 import org.junit.jupiter.api.Assertions;
+
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNull;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -27,6 +29,23 @@ class CourseRepositoryTests {
 	void deleteById_basic() {
 		courseRepository.deleteById(101L);
 		assertNull(courseRepository.findById(101L));
+	}
+
+	@Test
+	@DirtiesContext
+	void save_basic() {
+		// get a course & update details & save
+		Course course = courseRepository.findById(101L);
+		assertEquals("Introduction to Astrophysics", course.getName());
+
+		course.setName("Introduction to Astrophysics by N.D Tysson");
+
+		courseRepository.save(course);
+
+		Course course1 = courseRepository.findById(101L);
+		assertEquals("Introduction to Astrophysics by N.D Tysson", course1.getName());
+
+
 	}
 
 }

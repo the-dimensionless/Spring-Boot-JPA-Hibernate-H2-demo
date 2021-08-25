@@ -28,5 +28,7 @@ public class HibernateApplication implements CommandLineRunner {
 		logger.info("Course 101 is => " + course);
 
 		// courseRepository.deleteById(101L);
+
+		courseRepository.save(new Course("Introduction to Microservices"));
 	}
 }
