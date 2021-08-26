@@ -126,6 +126,16 @@ add @DirtiesContext so that after test, original state is brought back.
    em.detach(entity) no longer lets EM track the entity beyond this point.
    em.clear() clears out all that EM is tracking at this point.
    
+   After updating an entity, we can refresh it with the Database contents using
+   em.refresh(entity).
+   
+   EM is an interface to PersistenceContext
+   All entities saved by EM are saved to PersistenceContext.
+   
+2. JPQL
+
+   
+   
 
 
 
