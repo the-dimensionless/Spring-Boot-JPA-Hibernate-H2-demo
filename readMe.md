@@ -167,6 +167,35 @@ add @DirtiesContext so that after test, original state is brought back.
       @CreatedTimestamp
       private LocalDateTime createdDate;
       
+   4. @NamedQuery and @NamedQueries :
+      To be used instead of hard coding the queries so that
+      they are reusable.
+      
+      On the entity, we add the query
+   
+      * one @NamedQuery per entity else Duplicate Exception is thrown
+      * for multiple named queries, use @NamedQueries
+      * Ex- @NamedQueries(
+           value={
+              @NamedQuery(name, query),
+              @NamedQuery(name, query),
+           }
+        )
+        
+      * called using EM.createNamedQuery(name);
+   
+   5. Native Queries :
+      Situations where native query needs to be fired (direct SQL) like mass update or
+      use db specific feature not provided by JPA.
+      EM.createNativeQuery()
+      em.createNativeQuery("select * from course where id = ?", Course.class);
+      query.setParameter(1, value) // positional Parameter
+
+      em.createNativeQuery("select * from course where id = :id", Course.class);
+      query.setParameter("id", value) // named Parameter
+      
+      
+      
    
    
 

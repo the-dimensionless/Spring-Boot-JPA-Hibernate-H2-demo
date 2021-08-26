@@ -69,4 +69,14 @@ class CourseRepositoryTests {
 		courseRepository.jpql_where();
 	}
 
+	@Test
+	void namedQuery() {
+		courseRepository.namedQuery();
+	}
+
+	@Test
+	void nativeQuery() {
+		courseRepository.nativeQueryBasic();
+	}
+
 }

@@ -8,6 +8,7 @@ import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
 import javax.persistence.EntityManager;
+import javax.persistence.Query;
 import javax.persistence.TypedQuery;
 import java.util.List;
 
@@ -66,5 +67,17 @@ public class CourseRepository {
         TypedQuery<Course> query = em.createQuery("Select c from Course c where name like '%physics'", Course.class);
         List<Course> resultList = query.getResultList();
         logger.info("Select c from Course c where name like '%Astro' with typed query = {}" + resultList);
+    }
+
+    public void namedQuery() {
+        Query query = em.createNamedQuery("query_get_all_courses");
+        List resultList = query.getResultList();
+        logger.info("Named Query Result : {}" + resultList);
+    }
+
+    public void nativeQueryBasic() {
+        Query query = em.createNativeQuery("select * from course", Course.class);
+        List resultList = query.getResultList();
+        logger.info("Native Query Result : {}" + resultList);
     }
 }
