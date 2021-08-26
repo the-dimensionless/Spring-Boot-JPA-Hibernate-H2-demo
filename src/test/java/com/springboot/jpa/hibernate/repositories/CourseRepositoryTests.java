@@ -11,11 +11,17 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.annotation.DirtiesContext;
 
+import javax.persistence.EntityManager;
+import java.util.List;
+
 @SpringBootTest(classes = HibernateApplication.class)
 class CourseRepositoryTests {
 
 	@Autowired
 	CourseRepository courseRepository;
+
+	@Autowired
+	EntityManager em;
 
 	@Test
 	void findById_basic() {
@@ -50,6 +56,17 @@ class CourseRepositoryTests {
 	@DirtiesContext
 	void entityManagerPlayground() {
 		courseRepository.entityManagerPlayground();
+	}
+
+	@Test
+	void JPQL() {
+		// courseRepository.JPQL_basics();
+		courseRepository.JPQAL_basics_typed();
+	}
+
+	@Test
+	void JPQL_where() {
+		courseRepository.jpql_where();
 	}
 
 }

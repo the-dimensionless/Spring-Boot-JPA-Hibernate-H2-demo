@@ -132,7 +132,12 @@ add @DirtiesContext so that after test, original state is brought back.
    EM is an interface to PersistenceContext
    All entities saved by EM are saved to PersistenceContext.
    
-2. JPQL
+2. JPQL (Java Persistence Query Language) :
+   * We can query from Entities (like SQL queries from db tables)
+   * These queries are then converted to SQL queries.
+   * Ex- select c from Course c
+   * Query can return raw type or be casted to our type
+   
 
    
    

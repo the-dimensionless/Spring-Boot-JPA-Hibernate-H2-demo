@@ -8,6 +8,8 @@ import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
 import javax.persistence.EntityManager;
+import javax.persistence.TypedQuery;
+import java.util.List;
 
 @Repository
 @Transactional
@@ -47,6 +49,22 @@ public class CourseRepository {
         em.persist(course);
         // update
         course.setName("REST API Updated!");
+    }
 
+    public void JPQL_basics() {
+        List resultList = em.createQuery("Select c from Course c").getResultList();
+        logger.info("Select c from Course c" + resultList);
+    }
+
+    public void JPQAL_basics_typed() {
+        TypedQuery<Course> query = em.createQuery("Select c from Course c", Course.class);
+        List<Course> resultList = query.getResultList();
+        logger.info("Select c from Course c with typed query" + resultList);
+    }
+
+    public void jpql_where() {
+        TypedQuery<Course> query = em.createQuery("Select c from Course c where name like '%physics'", Course.class);
+        List<Course> resultList = query.getResultList();
+        logger.info("Select c from Course c where name like '%Astro' with typed query = {}" + resultList);
     }
 }
