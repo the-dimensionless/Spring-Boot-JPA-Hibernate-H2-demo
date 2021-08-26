@@ -136,7 +136,38 @@ add @DirtiesContext so that after test, original state is brought back.
    * We can query from Entities (like SQL queries from db tables)
    * These queries are then converted to SQL queries.
    * Ex- select c from Course c
-   * Query can return raw type or be casted to our type
+   * Query can return raw type or be cast to our type
+   
+   * JPA and Hibernate Annotations
+   1. @Table(name = "tableName")
+      Used when tableName is different from entityName
+      Ex- @Table(name = "CourseDetails") -> course_details
+      // map table name to entity name
+      
+   2. @Column(name="fullname", nullable = false)
+      private String name;
+      
+      creates db table column fullname whereas enitity field is 
+      name.
+      > nullable: false: DatabaseIntegrityViolationException thrown
+      > if null value is passed to this field/column
+      
+      Other Attributes: 
+      unique() default false
+      insertable() default true
+      updatable() default true
+      int length() default 255
+      int precision, scale, etc
+      
+   3. Hibernate solutions for creation time
+   
+      @UpdateTimestamp
+      private LocalDateTime lastUpdatedDate;
+      
+      @CreatedTimestamp
+      private LocalDateTime createdDate;
+      
+   
    
 
    
