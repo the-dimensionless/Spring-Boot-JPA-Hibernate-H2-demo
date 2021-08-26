@@ -23,12 +23,6 @@ public class HibernateApplication implements CommandLineRunner {
 
 	@Override
 	public void run(String... args) throws Exception {
-		Course course = courseRepository.findById(101L);
 
-		logger.info("Course 101 is => " + course);
-
-		// courseRepository.deleteById(101L);
-
-		courseRepository.save(new Course("Introduction to Microservices"));
 	}
 }

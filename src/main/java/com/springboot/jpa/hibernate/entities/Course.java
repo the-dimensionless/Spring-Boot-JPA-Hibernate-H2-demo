@@ -10,7 +10,6 @@ import javax.persistence.NamedQuery;
 import java.time.LocalDateTime;
 
 @Entity
-@NamedQuery(name="query_get_all_courses", query = "select c from Course c")
 public class Course {
     @Id
     @GeneratedValue

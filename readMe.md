@@ -196,6 +196,9 @@ add @DirtiesContext so that after test, original state is brought back.
       
       
       
+### Relationships with JPA and Hibernate
+
+   
    
    
 
