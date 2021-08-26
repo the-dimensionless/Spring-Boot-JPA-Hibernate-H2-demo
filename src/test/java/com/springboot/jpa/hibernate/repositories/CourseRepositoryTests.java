@@ -44,8 +44,12 @@ class CourseRepositoryTests {
 
 		Course course1 = courseRepository.findById(101L);
 		assertEquals("Introduction to Astrophysics by N.D Tysson", course1.getName());
+	}
 
-
+	@Test
+	@DirtiesContext
+	void entityManagerPlayground() {
+		courseRepository.entityManagerPlayground();
 	}
 
 }

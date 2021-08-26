@@ -114,6 +114,18 @@ To Make DB url constant
    The methods inside are run as transactions
   
 * After running  unit test for operation that changes data like remove or deleteById,
-add @DirtiesContext so that after test, original state is brought back
+add @DirtiesContext so that after test, original state is brought back.
+  
+* Entity Manager Playground
+
+1. Because the whole class is @Transactional, even if we update an entity after
+   persist, changes are saved.
+   EM continues to manage the entity unless the transaction completes.
+   Tracks all changes and persists them.
+   em.flush() acts like a breakpoint and persists all changes upto this point to the db.
+   em.detach(entity) no longer lets EM track the entity beyond this point.
+   em.clear() clears out all that EM is tracking at this point.
+   
+
 
 
