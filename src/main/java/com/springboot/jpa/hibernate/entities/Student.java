@@ -18,6 +18,11 @@ public class Student {
     private Passport passport;
 
     @ManyToMany
+    @JoinTable(
+            name = "Student_Course",
+            joinColumns = @JoinColumn(name="Student_id"),
+            inverseJoinColumns = @JoinColumn(name = "Course_Id")
+    ) // name of join table in db
     private List<Course> courses = new ArrayList<>();
 
     protected Student() {

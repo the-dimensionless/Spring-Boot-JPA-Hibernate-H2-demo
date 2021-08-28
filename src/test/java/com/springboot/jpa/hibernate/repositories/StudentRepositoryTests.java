@@ -43,4 +43,12 @@ public class StudentRepositoryTests {
     public void someTests() {
         this.studentRepository.updating();
     }
+
+    @Test
+    @Transactional
+    public void getStudentsAndCourses() {
+        Student student = em.find(Student.class, 2001L);
+        logger.info("Student => {}", student);
+        logger.info("Course => {}", student.getCourses());
+    }
 }
