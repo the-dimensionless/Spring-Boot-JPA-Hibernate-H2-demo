@@ -214,4 +214,14 @@ class CourseRepositoryTests {
 		logger.info("Typed Query using Criteria Query => {}",resultList);
 	}
 
+	@Test
+	@Transactional
+	public void findById_firstLevelCacheDemo() {
+		Course course = courseRepository.findById(101L);
+		logger.info("Course retrieved 1st time => {}", course.getName());
+
+		Course course1 = courseRepository.findById(101L);
+		logger.info("Course retrieved 2nd time => {}", course1.getName());
+	}
+
 }

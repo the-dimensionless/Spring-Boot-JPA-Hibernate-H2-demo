@@ -373,6 +373,40 @@ expected result object
 5. Build the TypedQuery using EM and criteria query
 
 
+### Transaction Management
+* Maintain ACID Properties
+  
+Transactions in parallel > 
+* Dirty Read : Trans B Reading a write from trans A before trans A committed.
+* Phantom Read : Getting different rows when read multiple times (say one new was added in between)
+* Non-repeatable Read : Read from a trans that is being updated and so different values are read.
+
+* 4 Isolation Levels
+                    Dirty Read | NR Read | P Read | 
+Read Uncommitted    Possible    Possible    Possible
+Read Committed      Solved      Possible    Possible
+Repeatable Read     Solved      Solved      Possible
+Serializable         Solved      Solved      Solved
+  
+@Transactional(isolation = )
+
+* Implementation: Points to Ponder
+
+JPA transaction : for a DB
+org.springframework transaction : multi db, mq etc
+
+
+### Caching
+
+PersistenceContext -> 1st level caching -> 2nd level caching -> DB
+
+1st level cache : Within boundary of a single transaction
+2nd level cache : Common info for all users across the app
+
+
+
+
+
    
    
 
