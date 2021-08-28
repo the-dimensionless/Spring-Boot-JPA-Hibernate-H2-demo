@@ -1,9 +1,6 @@
 package com.springboot.jpa.hibernate.entities;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
+import javax.persistence.*;
 
 @Entity
 public class Student {
@@ -14,6 +11,9 @@ public class Student {
 
     @Column(nullable = false)
     private String name;
+
+    @OneToOne
+    private Passport passport;
 
     protected Student() {
 
@@ -40,6 +40,15 @@ public class Student {
         return "Student{" +
                 "id=" + id +
                 ", name='" + name + '\'' +
+                ", passport=" + passport +
                 '}';
+    }
+
+    public Passport getPassport() {
+        return passport;
+    }
+
+    public void setPassport(Passport passport) {
+        this.passport = passport;
     }
 }

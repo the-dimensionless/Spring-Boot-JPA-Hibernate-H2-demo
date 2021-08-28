@@ -198,7 +198,48 @@ add @DirtiesContext so that after test, original state is brought back.
       
 ### Relationships with JPA and Hibernate
 
-   
+   ## One-to-One Relationship
+   Student - related - Passport
+   1. Create Passport_id in student or student_id in passport
+      (table that has foreign id owns the relationship)
+      @OneToOne jpa annotation
+      ex - in Student Entity 
+      @OneToOne
+      private Passport passport;
+      
+   2. Can be unidirectional or bidirectional
+
+   >SELECT * FROM STUDENT s , Passport p where p.id = s.passport_id;
+
+   ID  	NAME  	PASSPORT_ID  	ID  	NUMBER  
+   2001	Tony	4001	4001	E123456
+   2002	Cap	4002	4002	N123456
+   2003	Nat	4003	4003	I123456
+   (3 rows, 2 ms)
+
+   3. Hibernate is lazy, it will delay as long as it can before writing to db
+   4. Eager Fetch vs Lazy Fetch
+      * Any 1-1 relation is by default EAGER_FETCHED (while getting students, 
+        student is left outer joined with passport and fetched)
+        > Hibernate:
+        select
+        student0_.id as id1_3_0_,
+        student0_.name as name2_3_0_,
+        student0_.passport_id as passport3_3_0_,
+        passport1_.id as id1_1_1_,
+        passport1_.number as number2_1_1_
+        from
+        student student0_
+        left outer join
+        passport passport1_
+        on student0_.passport_id=passport1_.id
+        where
+        student0_.id=?
+        
+      * Student => Student{id=2001, name='Tony', passport=Passport{id=4001, number='E123456'}}
+        2021-08-28 13:00:39.335  INFO 19718 --- [           main] c.s.j.h.r.StudentRepositoryTests         : Passport details => Passport{id=4001, number='E123456'}
+        
+      * 
    
    
 
