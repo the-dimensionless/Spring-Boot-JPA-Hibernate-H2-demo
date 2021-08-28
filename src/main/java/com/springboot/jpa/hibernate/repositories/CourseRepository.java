@@ -98,4 +98,15 @@ public class CourseRepository {
         em.persist(review1);
         em.persist(review2);
     }
+
+    public void addReviewsForCourse(Long courseId, List<Review> reviews) {
+        Course course = findById(courseId);
+        logger.info("Course reviews => {}", course.getReviews());
+
+        reviews.stream().forEach(review -> {
+            course.addReview(review);
+            review.setCourse(course);
+            em.persist(review);
+        });
+    }
 }
