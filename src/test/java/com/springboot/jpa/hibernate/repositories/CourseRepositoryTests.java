@@ -3,6 +3,7 @@ package com.springboot.jpa.hibernate.repositories;
 import com.springboot.jpa.hibernate.HibernateApplication;
 import com.springboot.jpa.hibernate.entities.Course;
 import com.springboot.jpa.hibernate.entities.Review;
+import com.springboot.jpa.hibernate.entities.Student;
 import org.junit.jupiter.api.Assertions;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -16,6 +17,7 @@ import org.springframework.test.annotation.DirtiesContext;
 import org.springframework.transaction.annotation.Transactional;
 
 import javax.persistence.EntityManager;
+import javax.persistence.TypedQuery;
 import java.util.List;
 
 @SpringBootTest(classes = HibernateApplication.class)
@@ -97,6 +99,46 @@ class CourseRepositoryTests {
 	public void getReview() {
 		Review review = em.find(Review.class, 5001L);
 		logger.info("Reviews are => {}", review.getCourse());
+	}
+
+	@Test
+	public void jpql_courses_without_students() {
+		TypedQuery<Course> query = em.createQuery(
+				"Select c from Course c where c.students is empty",
+				Course.class
+		);
+		List<Course> courses = query.getResultList();
+		logger.info("Courses with no students enrolled in => {}", courses);
+	}
+
+	@Test
+	public void jpql_courses_with_atleast_two_students() {
+		TypedQuery<Course> query = em.createQuery(
+				"Select c from Course c where size(c.students) >= 2",
+				Course.class
+		);
+		List<Course> courses = query.getResultList();
+		logger.info("Courses with at least 2 students enrolled in => {}", courses);
+	}
+
+	@Test
+	public void jpql_courses_ordered_by_students() {
+		TypedQuery<Course> query = em.createQuery(
+				"Select c from Course c order by size(c.students)",
+				Course.class
+		);
+		List<Course> courses = query.getResultList();
+		logger.info("Courses ordered by students enrolled in ASC => {}", courses);
+	}
+
+	@Test
+	public void jpql_students_passport_like() {
+		TypedQuery<Student> query = em.createQuery(
+				"Select s from Student s where s.passport.number like '%1234%'",
+				Student.class
+		);
+		List<Student> students = query.getResultList();
+		logger.info("Students with passport like %1234% => {}", students);
 	}
 
 }

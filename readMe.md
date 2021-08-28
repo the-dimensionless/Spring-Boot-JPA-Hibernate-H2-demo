@@ -350,6 +350,17 @@ Mapping will apply for subclass
 Parent has no table in database
 Mappings are like entity.
 
+JPQL
+
+BETWEEN 100 and 1000
+IS NULL
+upper, lower, trim, length
+
+JOINS => JOIN, LEFT JOIN, CROSS JOIN
+JOIN => Select c,s from Course c JOIN c.students s
+LEFT JOIN => Select c, s from Course c LEFT JOIN c.students s
+CROSS JOIN => Select c, s from Course c, Student s
+
 
    
    
