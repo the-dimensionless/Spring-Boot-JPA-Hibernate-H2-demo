@@ -74,4 +74,17 @@ public class StudentRepository {
         // Without @Transactional, each DB query has it's own Persistence Context and closes session after performing it!
     }
 
+    public void insertStudentAndCourse() {
+        Student student = new Student("Magic Mike");
+        Course course = new Course("Angular in 100 steps");
+
+        em.persist(student);
+        em.persist(course);
+
+        student.addCourse(course);
+        course.addStudent(student);
+
+        em.persist(student);
+    }
+
 }

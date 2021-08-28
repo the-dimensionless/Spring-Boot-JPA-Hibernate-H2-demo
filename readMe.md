@@ -278,6 +278,42 @@ CourseId : StudentId
 * Bi-directional mapping will create 2 join tables
 To fix this, we make one side the Owning side!
   
+### Inheritance Hierarchies with JPA and Hibernate
+
+####  Single Table, Table per class, Join Table, Mapped Superclass
+
+    Methods to map entities having inheritance relations
+
+
+Example : Employee
+            1. Part Time Employee
+            2. Full Time Employee
+
+1. Single Table Method
+
+Both Part time & Full time employees would be stored in single table.
+on the Employee entity (abstract class), we have
+@Inheritance(strategy = InheritanceType.SINGLE_TABLE)
+(default is also Single Table)
+
+> SELECT * FROM EMPLOYEE;
+DTYPE  	ID  	NAME  	SALARY  	HOURLY_WAGE  
+EmployeeFullTime	1	Jack	10000.00	null
+EmployeePartTime	2	Jill	null	50.00
+(2 rows, 2 ms)
+ DTYPE > Type of subclass
+@DiscriminatorColumn(name="EmployeeType") changes DTYPE column name to EmployeeType
+ 
+Problem: lot of nullable columns
+Advantage: Performance (no joins needed)
+
+2. Table Per Class
+Creates a table per concrete Entity Class
+   * How we insert/retrieve employee data will not change due to inheritance type used
+    
+
+
+    
    
    
 
