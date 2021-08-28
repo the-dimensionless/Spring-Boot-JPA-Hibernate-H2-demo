@@ -27,6 +27,7 @@ public class HibernateApplication implements CommandLineRunner {
 
 	@Override
 	public void run(String... args) throws Exception {
-		studentRepository.saveStudentWithPassport();
+		// studentRepository.saveStudentWithPassport();
+		courseRepository.addReviewForCourse();
 	}
 }

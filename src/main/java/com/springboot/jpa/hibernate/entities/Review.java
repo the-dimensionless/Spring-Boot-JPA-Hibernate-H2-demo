@@ -5,6 +5,7 @@ import com.sun.xml.internal.fastinfoset.util.PrefixArray;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
 
 @Entity
 public class Review {
@@ -16,6 +17,9 @@ public class Review {
     private String rating;
 
     private String description;
+
+    @ManyToOne
+    private Course course;
 
     protected Review() {
     }
@@ -52,5 +56,13 @@ public class Review {
                 ", description='" + description + '\'' +
                 ", rating='" + rating + '\'' +
                 '}';
+    }
+
+    public Course getCourse() {
+        return course;
+    }
+
+    public void setCourse(Course course) {
+        this.course = course;
     }
 }

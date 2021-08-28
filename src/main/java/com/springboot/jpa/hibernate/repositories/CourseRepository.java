@@ -1,6 +1,7 @@
 package com.springboot.jpa.hibernate.repositories;
 
 import com.springboot.jpa.hibernate.entities.Course;
+import com.springboot.jpa.hibernate.entities.Review;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -79,5 +80,22 @@ public class CourseRepository {
         Query query = em.createNativeQuery("select * from course", Course.class);
         List resultList = query.getResultList();
         logger.info("Native Query Result : {}" + resultList);
+    }
+
+    public void addReviewForCourse() {
+        Course course = findById(101L);
+        logger.info("Course reviews => {}", course.getReviews());
+
+        Review review1 = new Review("5", "Gr8 course!");
+        Review review2 = new Review("5", "Gr8 course!");
+
+        course.addReview(review1);
+        course.addReview(review2);
+
+        review1.setCourse(course);
+        review2.setCourse(course);
+
+        em.persist(review1);
+        em.persist(review2);
     }
 }

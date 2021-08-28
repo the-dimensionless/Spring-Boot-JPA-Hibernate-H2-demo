@@ -260,7 +260,8 @@ add @DirtiesContext so that after test, original state is brought back.
 *       @OneToOne(fetch = FetchType.LAZY, mappedBy = "passport")
         private Student student;
 
-    6. 
+    6. One to Many relationship
+        * 
    
    
 
