@@ -239,7 +239,28 @@ add @DirtiesContext so that after test, original state is brought back.
       * Student => Student{id=2001, name='Tony', passport=Passport{id=4001, number='E123456'}}
         2021-08-28 13:00:39.335  INFO 19718 --- [           main] c.s.j.h.r.StudentRepositoryTests         : Passport details => Passport{id=4001, number='E123456'}
         
-      * 
+      * LAZY_FETCHING for better performance
+        On Entity Student,
+        @OneToOne(fetch = FetchType.LAZY)
+        private Passport passport;
+        
+      * Without @Transactional, we might get err like lazyInitializer exception
+         could not initialize proxy no Session found (Hibernate Session)
+        
+      * FE lazy fetch to hibernate (TODO)
+
+
+
+    5. Bi directional 1-1 is not recommended (leads to duplicacy of info)
+        * One owning side of relationship
+        * mapped by is applied on the non-owning side of relationship, ex -
+        * we can access each from other but extra column for id is created only on owning side
+        * In DB, Student has foreign key but passport does not have (using mapped by )
+        
+*       @OneToOne(fetch = FetchType.LAZY, mappedBy = "passport")
+        private Student student;
+
+    6. 
    
    
 

@@ -53,4 +53,25 @@ public class StudentRepository {
         em.remove(student);
     }
 
+    @Transactional
+    public void updating() {
+        // DB OP 1 -> Retrieve Student
+        Student student = em.find(Student.class, 2001L);
+        // Persistence Context (Student)
+
+        // DB OP 2 -> Retrieve Passport
+        Passport passport = student.getPassport();
+        // Persistence Context (Student, Passport)
+
+        // DB OP 3 -> Update Passport
+        passport.setNumber("N123456");
+        // Persistence Context (Student, Passport++)
+
+        // DB OP 4 -> Update Student
+        student.setName("Updated Name");
+        // Persistence Context (Student++, Passport++)
+
+        // Without @Transactional, each DB query has it's own Persistence Context and closes session after performing it!
+    }
+
 }
