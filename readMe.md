@@ -421,6 +421,50 @@ spring.jpa.properties.javax.persistence.sharedCache.mode = ENABLE_SELECTIVE
 121814 nanoseconds spent performing 1 L2C hits;
 0 nanoseconds spent performing 0 L2C misses;
 
+on Entity, specify @Cacheable // default value is true
+
+
+### Hibernate Tips (*** only Hibernate not JPA)
+
+1. Hard delete vs Soft delete
+To keep history of row data, we use soft delete (track if it is active or not)
+
+@SQLDelete(sql="update course set is_deleted = true where id = ?")
+on entity
+
+private boolean isDeleted;
+instead of actually deleting, we are only updating this field to true
+
+on the entity
+@Where(clause = "is_deleted = false")
+it is fetching data only when this where clause is true else null is returned
+in native queries, we have to define it by ourselves
+
+@PreRemove
+private void preRemove() {
+    this.isDeleted = true;
+}
+
+2. JPA Entity Lifecycle methods
+
+@PreRemove
+
+@PostPersist
+
+@PostRemove
+
+@PostUpdate
+
+@PrePersist
+
+@PreUpdate
+
+@PostLoad
+
+3. Using Embedded and Embeddable with JPA
+
+
+
 
 
 
