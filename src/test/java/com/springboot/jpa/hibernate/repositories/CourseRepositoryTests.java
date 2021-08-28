@@ -224,4 +224,13 @@ class CourseRepositoryTests {
 		logger.info("Course retrieved 2nd time => {}", course1.getName());
 	}
 
+	@Test
+	public void findById_secondLevelCacheDemo() {
+		Course course = courseRepository.findById(101L);
+		logger.info("Course retrieved 1st time using EhCache => {}", course.getName());
+
+		Course course1 = courseRepository.findById(101L);
+		logger.info("Course retrieved 2nd time using EhCache => {}", course1.getName());
+	}
+
 }

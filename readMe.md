@@ -400,9 +400,26 @@ org.springframework transaction : multi db, mq etc
 
 PersistenceContext -> 1st level caching -> 2nd level caching -> DB
 
-1st level cache : Within boundary of a single transaction
+1st level cache : Within boundary of a single transaction (start at service layer say)
 2nd level cache : Common info for all users across the app
 
+use a framework for 2nd level cache ex - EhCache
+1. add dependency
+   <dependency>
+   <groupId>org.hibernate</groupId>
+   <artifactId>hibernate-ehcache</artifactId>
+   </dependency>
+   
+2. Configure
+
+#### Second Level Cache -> enable, specify the framework, only cache what told, specify what to cache
+spring.jpa.properties.hibernate.cache.use_second_level_cache = true
+spring.jpa.properties.hibernate.cache.region.factory_class = org.hibernate.cache.ehcache.internal.EhcacheRegionFactory
+spring.jpa.properties.javax.persistence.sharedCache.mode = ENABLE_SELECTIVE
+
+0 nanoseconds spent performing 0 L2C puts;
+121814 nanoseconds spent performing 1 L2C hits;
+0 nanoseconds spent performing 0 L2C misses;
 
 
 

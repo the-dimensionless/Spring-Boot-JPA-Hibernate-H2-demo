@@ -9,6 +9,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Entity
+@Cacheable
 public class Course {
     @Id
     @GeneratedValue
