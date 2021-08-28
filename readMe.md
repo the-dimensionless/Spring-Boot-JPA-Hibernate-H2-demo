@@ -361,6 +361,17 @@ JOIN => Select c,s from Course c JOIN c.students s
 LEFT JOIN => Select c, s from Course c LEFT JOIN c.students s
 CROSS JOIN => Select c, s from Course c, Student s
 
+Criteria API
+Create Criteria Query
+
+1. Use criteria builder to create a criteria query returning the
+expected result object
+   
+2. Define roots for tables which are involved in query
+3. Define Predicates etc using Criteria Builder
+4. Add Predicates etc to the Criteria Query
+5. Build the TypedQuery using EM and criteria query
+
 
    
    

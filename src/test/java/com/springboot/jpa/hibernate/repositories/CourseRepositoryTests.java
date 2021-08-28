@@ -17,7 +17,9 @@ import org.springframework.test.annotation.DirtiesContext;
 import org.springframework.transaction.annotation.Transactional;
 
 import javax.persistence.EntityManager;
+import javax.persistence.Query;
 import javax.persistence.TypedQuery;
+import javax.persistence.criteria.*;
 import java.util.List;
 
 @SpringBootTest(classes = HibernateApplication.class)
@@ -139,6 +141,77 @@ class CourseRepositoryTests {
 		);
 		List<Student> students = query.getResultList();
 		logger.info("Students with passport like %1234% => {}", students);
+	}
+
+	@Test
+	public void criteria_query_get_all_courses() {
+
+		CriteriaBuilder cb = em.getCriteriaBuilder();
+		CriteriaQuery<Course> cq = cb.createQuery(Course.class);
+
+		Root<Course> courseRoot = cq.from(Course.class);
+
+		TypedQuery<Course> query = em.createQuery(
+				cq.select(courseRoot)
+		);
+
+		List<Course> resultList = query.getResultList();
+		logger.info("Typed Query using Criteria Query => {}",resultList);
+	}
+
+	@Test
+	public void criteria_query_courses_having() {
+		CriteriaBuilder cb = em.getCriteriaBuilder();
+		CriteriaQuery<Course> cq = cb.createQuery(Course.class);
+
+		Root<Course> courseRoot = cq.from(Course.class);
+
+		Predicate like = cb.like(courseRoot.get("name"), "%Astrophysics");
+
+		cq.where(like);
+
+		TypedQuery<Course> query = em.createQuery(
+				cq.select(courseRoot)
+		);
+
+		List<Course> resultList = query.getResultList();
+		logger.info("Typed Query using Criteria Query => {}",resultList);
+	}
+
+	@Test
+	public void criteria_query_courses_having_no_students() {
+		CriteriaBuilder cb = em.getCriteriaBuilder();
+		CriteriaQuery<Course> cq = cb.createQuery(Course.class);
+
+		Root<Course> courseRoot = cq.from(Course.class);
+
+		Predicate studentsIsEmpty = cb.isEmpty(courseRoot.get("students"));
+
+		cq.where(studentsIsEmpty);
+
+		TypedQuery<Course> query = em.createQuery(
+				cq.select(courseRoot)
+		);
+
+		List<Course> resultList = query.getResultList();
+		logger.info("Typed Query using Criteria Query => {}",resultList);
+	}
+
+	@Test
+	public void criteria_query_join() {
+		CriteriaBuilder cb = em.getCriteriaBuilder();
+		CriteriaQuery<Course> cq = cb.createQuery(Course.class);
+
+		Root<Course> courseRoot = cq.from(Course.class);
+
+		Join<Object, Object> join = courseRoot.join("students", JoinType.LEFT);
+
+		TypedQuery<Course> query = em.createQuery(
+				cq.select(courseRoot)
+		);
+
+		List<Course> resultList = query.getResultList();
+		logger.info("Typed Query using Criteria Query => {}",resultList);
 	}
 
 }
