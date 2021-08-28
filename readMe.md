@@ -470,6 +470,14 @@ Embedded Object in Entity
 @Enumerated(EnumType.String) etc for other types
    
 
+5. When to use JPA
+
+SQL Database
+Static Domain Model
+Mostly CRUD
+Mostly Simple Queries/Mappings
+Not Heavy batch processing
+
 
 
 
