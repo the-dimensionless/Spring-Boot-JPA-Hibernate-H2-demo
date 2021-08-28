@@ -261,7 +261,10 @@ add @DirtiesContext so that after test, original state is brought back.
         private Student student;
 
     6. One to Many relationship
-        * 
+        * by default fetch type lAZY on ONE side ex-Course.getReviews()
+        * can be changed to EAGER
+        * ending with *toMany : default is lazy fetching
+        * on MANY side it is eager by default
    
    
 
