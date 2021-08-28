@@ -265,6 +265,19 @@ add @DirtiesContext so that after test, original state is brought back.
         * can be changed to EAGER
         * ending with *toMany : default is lazy fetching
         * on MANY side it is eager by default
+    
+
+### Many-to-Many 
+Course <-> Student
+
+Creation of JOIN Table
+
+CourseId : StudentId
+
+
+* Bi-directional mapping will create 2 join tables
+To fix this, we make one side the Owning side!
+  
    
    
 
