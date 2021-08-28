@@ -319,7 +319,31 @@ Employees are retrieved using Union of these two tables.
 Problem: Common columns are repeated, large no of subclasses can cause
 performance issues
 
-    
+3. JOINED
+
+Creates 3 tables
+Employee (Superclass)
+FullTimeEmployee(subclass 1)
+PartTimeEmployee(subclass 2)
+
+SELECT * FROM EMPLOYEE;
+ID  	NAME  
+1	Jack
+2	Jill
+
+SELECT * FROM EMPLOYEE_FULL_TIME;
+SALARY  	ID  
+10000.00	1
+
+SELECT * FROM EMPLOYEE_PART_TIME;
+HOURLY_WAGE  	ID  
+50.00	2
+
+
+To get the data, it performs a join on them (3 tables).
+Low performance if no of subclasses are more.
+
+
    
    
 
