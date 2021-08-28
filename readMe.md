@@ -311,7 +311,13 @@ Advantage: Performance (no joins needed)
 Creates a table per concrete Entity Class
    * How we insert/retrieve employee data will not change due to inheritance type used
     
+Therefore, two tables are created
+FULL_TIME_EMPLOYEE
+PART_TIME_EMPLOYEE
 
+Employees are retrieved using Union of these two tables.
+Problem: Common columns are repeated, large no of subclasses can cause
+performance issues
 
     
    
