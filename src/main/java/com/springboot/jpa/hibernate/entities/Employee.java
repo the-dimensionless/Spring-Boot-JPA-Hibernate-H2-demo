@@ -2,8 +2,7 @@ package com.springboot.jpa.hibernate.entities;
 
 import javax.persistence.*;
 
-@Entity
-@Inheritance(strategy = InheritanceType.JOINED)
+@MappedSuperclass
 public abstract class Employee {
 
     @Id

@@ -343,6 +343,13 @@ HOURLY_WAGE  	ID
 To get the data, it performs a join on them (3 tables).
 Low performance if no of subclasses are more.
 
+4. Mapped SuperClass
+
+A Class cannot be both same Entity and MappedSuperClass
+Mapping will apply for subclass
+Parent has no table in database
+Mappings are like entity.
+
 
    
    

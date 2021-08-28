@@ -1,6 +1,8 @@
 package com.springboot.jpa.hibernate.repositories;
 
 import com.springboot.jpa.hibernate.entities.Employee;
+import com.springboot.jpa.hibernate.entities.EmployeeFullTime;
+import com.springboot.jpa.hibernate.entities.EmployeePartTime;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,7 +26,15 @@ public class EmployeeRepository {
     }
 
     // get all employees
-    public List<Employee> getAllEmployees() {
-        return em.createQuery("select e from Employee e", Employee.class).getResultList();
+//    public List<Employee> getAllEmployees() {
+//        return em.createQuery("select e from Employee e", Employee.class).getResultList();
+//    }
+
+    public List<EmployeePartTime> getPartTimeEmployees() {
+        return em.createQuery("select e from EmployeePartTime e", EmployeePartTime.class).getResultList();
+    }
+
+    public List<EmployeePartTime> getFullTimeEmployees() {
+        return em.createQuery("select e from EmployeePartTime e", EmployeePartTime.class).getResultList();
     }
 }
