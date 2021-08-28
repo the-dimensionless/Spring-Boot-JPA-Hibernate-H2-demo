@@ -86,17 +86,17 @@ public class CourseRepository {
         Course course = findById(101L);
         logger.info("Course reviews => {}", course.getReviews());
 
-        Review review1 = new Review("5", "Gr8 course!");
-        Review review2 = new Review("5", "Gr8 course!");
-
-        course.addReview(review1);
-        course.addReview(review2);
-
-        review1.setCourse(course);
-        review2.setCourse(course);
-
-        em.persist(review1);
-        em.persist(review2);
+//        Review review1 = new Review("5", "Gr8 course!");
+//        Review review2 = new Review("5", "Gr8 course!");
+//
+//        course.addReview(review1);
+//        course.addReview(review2);
+//
+//        review1.setCourse(course);
+//        review2.setCourse(course);
+//
+//        em.persist(review1);
+//        em.persist(review2);
     }
 
     public void addReviewsForCourse(Long courseId, List<Review> reviews) {

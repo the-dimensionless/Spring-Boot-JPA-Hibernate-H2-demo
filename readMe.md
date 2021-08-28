@@ -466,6 +466,9 @@ Embedded Object in Entity
    
 @Embeddable vs  @Embedded
 
+4. Using ENUM (ordinal, numeric type by default)
+@Enumerated(EnumType.String) etc for other types
+   
 
 
 
