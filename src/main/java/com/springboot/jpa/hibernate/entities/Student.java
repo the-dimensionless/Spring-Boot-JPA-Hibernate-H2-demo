@@ -14,8 +14,30 @@ public class Student {
     @Column(nullable = false)
     private String name;
 
+    @Embedded
+    public Address getAddress() {
+        return address;
+    }
+
+    public void setAddress(Address address) {
+        this.address = address;
+    }
+
+    private Address address;
+
     @OneToOne(fetch = FetchType.LAZY)
     private Passport passport;
+
+    @Override
+    public String toString() {
+        return "Student{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", address=" + address +
+                ", passport=" + passport +
+                ", courses=" + courses +
+                '}';
+    }
 
     @ManyToMany
     @JoinTable(
@@ -43,15 +65,6 @@ public class Student {
 
     public Long getId() {
         return id;
-    }
-
-    @Override
-    public String toString() {
-        return "Student{" +
-                "id=" + id +
-                ", name='" + name + '\'' +
-                ", passport=" + passport +
-                '}';
     }
 
     public Passport getPassport() {

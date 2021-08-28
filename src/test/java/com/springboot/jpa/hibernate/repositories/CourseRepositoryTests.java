@@ -1,6 +1,7 @@
 package com.springboot.jpa.hibernate.repositories;
 
 import com.springboot.jpa.hibernate.HibernateApplication;
+import com.springboot.jpa.hibernate.entities.Address;
 import com.springboot.jpa.hibernate.entities.Course;
 import com.springboot.jpa.hibernate.entities.Review;
 import com.springboot.jpa.hibernate.entities.Student;
@@ -231,6 +232,14 @@ class CourseRepositoryTests {
 
 		Course course1 = courseRepository.findById(101L);
 		logger.info("Course retrieved 2nd time using EhCache => {}", course1.getName());
+	}
+
+	@Test
+	@Transactional
+	public void setAddressDetails() {
+		Student student = em.find(Student.class, 2001L);
+		student.setAddress(new Address("No 101", "Street Some", "Hyderabad"));
+		logger.info("Student is => {}", student);
 	}
 
 }

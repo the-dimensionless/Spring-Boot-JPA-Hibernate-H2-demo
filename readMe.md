@@ -462,7 +462,9 @@ private void preRemove() {
 @PostLoad
 
 3. Using Embedded and Embeddable with JPA
-
+Embedded Object in Entity 
+   
+@Embeddable vs  @Embedded
 
 
 
